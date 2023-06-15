@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taylor Swift Album Rankings</title>
+</head>
+<body>
+    <h1>Album Rankings</h1>
+    <ol>
+        {% for album_name, average_score in album_scores %}
+            <li>
+                <h2>{{ album_name }}</h2>
+                <p>Average score: {{ average_score }}</p>
+            </li>
+        {% endfor %}
+    </ol>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taylor Swift Albums</title>
+</head>
+<body>
+    {% for album in albums %}
+        <div>
+            <h2>{{ album.name }}</h2>
+            <ul>
+                {% for song in album.songs %}
+                <li>
+                    <span>{{ song.name }}</span>
+                    <form action="/rate/{{ song.name }}" method="post">
+                        <select name="rating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <input type="submit" value="Rate">
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+    <a href="{{ url_for('rankings') }}">See album rankings</a>
+</body>
+</html>
