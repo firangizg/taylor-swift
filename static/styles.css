@@ -1,0 +1,112 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    text-align: center;
+    color: black;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.instructions {
+    text-align: center;
+    color: black;
+    margin-bottom: 2em;
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.4;
+}
+
+.album-card {
+    display: flex;
+    flex-direction: column;
+    margin: 2em;  /* increased margin */
+    padding: 2em; /* increased padding */
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    max-width: 320px;
+    line-height: 1.5; /* added line height for better readability */
+}
+
+.album-card select {
+    padding: 0.5em;
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+}
+
+.rankings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2em;
+    padding: 2em;
+}
+
+.rankings-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+}
+
+.album-card h2 {
+    margin-bottom: 1em; /* added margin-bottom for more spacing */
+    text-align: center;
+}
+
+.album-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.album-card li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submit-button {
+    display: block;
+    width: 200px;
+    height: 50px;
+    margin: 2em auto;
+    font-size: 1.5em;
+    background-color: #8449BB;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #673299;
+}
+
+.album-Taylor-Swift { background-color: #053810; }
+.album-Fearless-Taylors-Version { background-color: #80724a; }
+.album-Speak-Now-Deluxe-edition { background-color: #57446a; }
+.album-Red-Taylors-Version { background-color: #951e1a; }
+.album-1989-Deluxe-Edition { background-color: #ac9368; }  
+.album-Reputation { background-color: #4a4848; }
+.album-Lover { background-color: #df59e1; }
+.album-folklore-Deluxe-Edition { background-color: #626161; }
+.album-evermore-Deluxe-Edition { background-color: #63300f; }
+.album-Midnights-Till-Dawn-Edition { background-color: #615a70; }
+
+
+@media (min-width: 768px) {
+    .albums-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

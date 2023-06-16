@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Taylor Swift Albums</title>
+    <title>Taylor Swift Album Ranker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    {% for album in albums %}
-        <div>
-            <h2>{{ album.name }}</h2>
-            <ul>
-                {% for song in album.songs %}
-                <li>
-                    <span>{{ song.name }}</span>
-                    <form action="/rate/{{ song.name }}" method="post">
-                        <select name="rating">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <input type="submit" value="Rate">
-                    </form>
-                </li>
-                {% endfor %}
-            </ul>
+    <h1 class="title">Taylor Swift Album Ranker</h1>
+    <p class="instructions">
+        Select a rating for each song in the dropdown menu. When you've rated all the songs, click the 'Submit Ratings' button at the bottom. Afterwards, you can see the album rankings by average song score!
+    </p>
+    <form action="{{ url_for('rate') }}" method="post">
+        <div class="albums-grid">
+            {% for album in albums %}
+                <!-- Add "album-" before album name -->
+                <div class="album-card album-{{ album.name.replace(' ', '-').replace('(','').replace(')','').replace("'",'').replace("’",'') }}">
+                    <h2>{{ album.name }}</h2>
+                    <ul>
+                        {% for song in album.songs %}
+                        <li>
+                            <span>{{ song.name }}</span>
+                            <select name="{{ song.id }}">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-    <a href="{{ url_for('rankings') }}">See album rankings</a>
+        <input type="submit" value="Submit all ratings" class="submit-button">
+    </form>
 </body>
 </html>

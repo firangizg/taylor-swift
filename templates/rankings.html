@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Taylor Swift Album Rankings</title>
+    <title>Album Rankings</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Album Rankings</h1>
-    <ol>
-        {% for album_name, average_score in album_scores %}
-            <li>
-                <h2>{{ album_name }}</h2>
-                <p>Average score: {{ average_score }}</p>
-            </li>
+    <h1 class="title">Album Rankings</h1>
+    <div class="rankings-grid">
+        {% for album_score in album_scores %}
+            <div class="rankings-card album-{{ album_score[0].replace(' ', '-').replace('(','').replace(')','').replace("'",'').replace("’",'') }}">
+                <h2>#{{ loop.index }} - {{ album_score[0] }}</h2>
+                <p>Average score: {{ album_score[1] }}</p>
+            </div>
         {% endfor %}
-    </ol>
+    </div>
+    <a href="{{ url_for('home') }}" class="back-button">Back to albums</a>
 </body>
 </html>

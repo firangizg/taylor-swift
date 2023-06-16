@@ -5,7 +5,6 @@ from sqlalchemy.sql import func
 from sqlalchemy import PrimaryKeyConstraint, text
 
 app = Flask(__name__)
-# Use your preferred SQL database here
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
 db = SQLAlchemy(app)
 
@@ -31,16 +30,16 @@ def home():
     albums = Album.query.all()  # Fetch all albums
     return render_template('index.html', albums=albums)
 
-@app.route('/rate/<song_name>', methods=['POST'])
-def rate(song_name):
-    song = Song.query.filter_by(name=song_name).first()
-    if not song:
-        return "Song not found", 404
-    rating = request.form.get('rating')
-    new_rating = Rating(score=rating, song=song)
-    db.session.add(new_rating)
+@app.route('/rate', methods=['POST'])
+def rate():
+    ratings = request.form.to_dict()
+    for song_id, rating in ratings.items():
+        song = Song.query.get(song_id)
+        if song:
+            new_rating = Rating(score=int(rating), song=song) # convert the rating to an integer
+            db.session.add(new_rating)
     db.session.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('rankings'))
 
 @app.route('/rankings')
 def rankings():
